@@ -1,30 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putunbr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 18:46:25 by hel-kame          #+#    #+#             */
-/*   Updated: 2022/12/23 18:52:39 by hel-kame         ###   ########.fr       */
+/*   Created: 2022/11/23 19:17:45 by hel-kame          #+#    #+#             */
+/*   Updated: 2022/11/25 17:08:55 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "libft.h"
 
-# include "../libft/libft.h"
-# include <unistd.h>
-# include <stdlib.h>
-# include <stdio.h>
+static int	nb_size(unsigned int n)
+{
+	int				size;
+	long			nb;
 
-int		sa(int *a);
-int		pa(int *a, int *b);
-void	ra(int *a);
-void	rra(int *a);
-int		sb(int *b);
-int		pb(int *a, int *b);
-void	rb(int *b);
-void	rrb(int *b);
-void	print_piles(int *a, int *b); //PRINTER HAVE TO DELETE
-#endif
+	nb = n;
+	size = 1;
+	while (nb >= 10)
+	{
+		size++;
+		nb /= 10;
+	}
+	return (size);
+}
+
+int	ft_putunbr(unsigned int n)
+{
+	if (n == 0)
+		ft_putchar('0');
+	if (n > 0 && n < 10)
+		ft_putchar(n + '0');
+	if (n > 9)
+	{
+		ft_putunbr(n / 10);
+		ft_putunbr(n % 10);
+	}
+	return (nb_size(n));
+}

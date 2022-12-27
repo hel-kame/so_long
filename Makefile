@@ -6,7 +6,7 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2022/12/26 16:36:40 by hel-kame         ###   ########.fr        #
+#    Updated: 2022/12/27 19:25:29 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,7 @@ MATH = -lm
 
 INCLUDES = ./includes
 
-CFLAGS = -Werror -Wextra -Wall -I$(INCLUDES) -I$(MLX_PATH)
+CFLAGS = -Werror -Wextra -Wall -I$(INCLUDES) -I$(MLX_PATH) -g3
 
 all :	$(NAME)
 

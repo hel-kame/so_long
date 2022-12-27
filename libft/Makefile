@@ -6,7 +6,7 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2022/11/17 17:22:51 by hel-kame         ###   ########.fr        #
+#    Updated: 2022/12/17 18:08:52 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,14 @@ SRC =	ft_atoi.c			\
 		ft_putstr_fd.c		\
 		ft_strmapi.c		\
 		ft_striteri.c		\
+		ft_printf.c			\
+		ft_putchar.c		\
+		ft_puthexa.c		\
+		ft_puthexa_maj.c	\
+		ft_putnbr.c			\
+		ft_putstr.c			\
+		ft_putunbr.c		\
+		ft_print_memory.c	\
 
 BONUS =	ft_lstnew.c			\
 		ft_lstadd_front.c	\

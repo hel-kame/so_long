@@ -1,42 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 14:17:32 by hel-kame          #+#    #+#             */
-/*   Updated: 2022/12/20 15:27:36 by hel-kame         ###   ########.fr       */
+/*   Created: 2022/11/23 21:17:35 by hel-kame          #+#    #+#             */
+/*   Updated: 2022/11/25 17:09:03 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+int	ft_putstr(const char *str)
 {
 	int	i;
-	int	val;
-	int	neg;
 
 	i = 0;
-	val = 0;
-	neg = 0;
-	if (nptr == NULL)
-		return (-1);
-	while ((nptr[i] == ' ') || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-')
-		neg = 1;
-	if (nptr[i] == '+' || nptr[i] == '-')
-		i++;
-	while ((nptr[i] != '\0') && (nptr[i] >= '0' && nptr[i] <= '9'))
+	if (!str)
 	{
-		val *= 10;
-		val += nptr[i] - '0';
+		write(1, "(null)", 6);
+		return (6);
+	}
+	while (str[i] != '\0')
+	{
+		ft_putchar(str[i]);
 		i++;
 	}
-	if (neg == 1)
-		return (-val);
-	else
-		return (val);
+	return (i);
 }

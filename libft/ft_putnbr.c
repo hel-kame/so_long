@@ -1,42 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_putnbr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/07 14:17:32 by hel-kame          #+#    #+#             */
-/*   Updated: 2022/12/20 15:27:36 by hel-kame         ###   ########.fr       */
+/*   Created: 2022/11/23 19:17:45 by hel-kame          #+#    #+#             */
+/*   Updated: 2022/11/25 17:12:20 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+static int	nb_size(int n)
 {
-	int	i;
-	int	val;
-	int	neg;
+	int		size;
+	long	nb;
 
-	i = 0;
-	val = 0;
-	neg = 0;
-	if (nptr == NULL)
-		return (-1);
-	while ((nptr[i] == ' ') || (nptr[i] >= 9 && nptr[i] <= 13))
-		i++;
-	if (nptr[i] == '-')
-		neg = 1;
-	if (nptr[i] == '+' || nptr[i] == '-')
-		i++;
-	while ((nptr[i] != '\0') && (nptr[i] >= '0' && nptr[i] <= '9'))
+	nb = n;
+	size = 1;
+	if (nb < 0)
 	{
-		val *= 10;
-		val += nptr[i] - '0';
-		i++;
+		size++;
+		nb = -nb;
 	}
-	if (neg == 1)
-		return (-val);
-	else
-		return (val);
+	while (nb >= 10)
+	{
+		size++;
+		nb /= 10;
+	}
+	return (size);
+}
+
+int	ft_putnbr(int n)
+{
+	if (n < 0)
+	{
+		ft_putchar('-');
+		if (n < -9)
+			ft_putnbr(n / 10 * -1);
+		ft_putnbr(n % 10 * -1);
+	}
+	if (n >= 0 && n < 10)
+	{
+		ft_putchar(n + '0');
+	}
+	if (n > 9)
+	{
+		ft_putnbr(n / 10);
+		ft_putnbr(n % 10);
+	}
+	return (nb_size(n));
 }
