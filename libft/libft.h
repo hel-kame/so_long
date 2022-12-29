@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:49:44 by hel-kame          #+#    #+#             */
-/*   Updated: 2022/12/17 18:11:06 by hel-kame         ###   ########.fr       */
+/*   Updated: 2022/12/28 21:36:31 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,17 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <stdarg.h>
+# include <fcntl.h>
 
 typedef struct s_list
 {
 	void			*content;
 	struct s_list	*next;
 }	t_list;
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 12
+# endif
 
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);
@@ -66,6 +71,7 @@ void	ft_lstdelone(t_list *list, void (*del)(void *));
 void	ft_lstclear(t_list **list, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void(*del)(void *));
+
 int		ft_flags(const char *f, va_list args);
 int		ft_printf(const char *f, ...);
 int		ft_putchar(char c);
@@ -75,4 +81,13 @@ int		ft_puthexa_maj(unsigned int nb);
 int		ft_putnbr(int n);
 int		ft_putunbr(unsigned int n);
 int		ft_print_memory(void *s);
+
+int		ft_strlen_gnl(char *s);
+int		ft_get_nl_gnl(char *s);
+char	*ft_strjoin_gnl(char *s1, char *s2);
+char	*read_file(char *buffer, int fd);
+char	*get_new_buffer(char *buffer);
+char	*get_line(char *buffer, char *line);
+char	*get_next_line(int fd);
+char	*ft_strdup_gnl(char *s);
 #endif

@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/07 14:48:04 by hel-kame          #+#    #+#             */
-/*   Updated: 2022/11/17 10:57:01 by hel-kame         ###   ########.fr       */
+/*   Updated: 2022/12/28 17:13:00 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,17 @@
 char	*ft_strdup(const char *s1)
 {
 	int		i;
-	int		size;
 	char	*cpy;
 
 	i = 0;
-	size = ft_strlen(s1);
-	cpy = (char *)malloc(sizeof(char) * (size + 1));
+	cpy = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
 	if (!(cpy))
 		return (NULL);
-	while (i < size)
+	while (s1[i] != '\0')
 	{
 		cpy[i] = s1[i];
 		i++;
 	}
-	cpy[size] = '\0';
+	cpy[i] = '\0';
 	return (cpy);
 }

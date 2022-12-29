@@ -6,7 +6,7 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2022/12/27 21:09:17 by hel-kame         ###   ########.fr        #
+#    Updated: 2022/12/28 18:04:52 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,6 +14,7 @@ NAME = so_long
 
 SRC = src/main.c			\
       src/hook_handlers.c	\
+      src/parsing.c			\
 
 OBJ = $(SRC:.c=.o)
 
