@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:46:25 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/01 20:32:07 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/01 21:05:16 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ typedef struct s_mlx {
 	int		pos_column;
 	void	*mlx;
 	void	*win;
-	int		width;
-	int		heigh;
 	char	**map;
 	void	*g_img;
 	void	*w_img;
