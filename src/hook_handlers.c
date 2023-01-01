@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 21:06:28 by hel-kame          #+#    #+#             */
-/*   Updated: 2022/12/28 16:11:16 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/01 20:31:39 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	handle_no_event(t_mlx *mlx)
 
 int	handle_destroy(t_mlx *mlx)
 {
-	mlx_destroy_image(mlx->mlx, mlx->P_img);
+	mlx_destroy_image(mlx->mlx, mlx->p_img);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx_destroy_display(mlx->mlx);
 	free(mlx->mlx);
@@ -38,6 +38,7 @@ int	handle_keypress(int keycode, t_mlx *mlx)
 		i++;
 		mlx->move = i;
 		ft_printf("%d\n", mlx->move);
+		game_events(keycode, mlx);
 	}
 	return (0);
 }

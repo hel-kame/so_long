@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:46:25 by hel-kame          #+#    #+#             */
-/*   Updated: 2022/12/28 23:49:18 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/01 20:32:07 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,24 +29,43 @@ typedef struct s_mlx {
 	int		move;
 	int		row;
 	int		column;
+	int		pos_row;
+	int		pos_column;
 	void	*mlx;
 	void	*win;
-	int		win_width;
-	int		win_heigh;
+	int		width;
+	int		heigh;
 	char	**map;
-	void	*G_img;
-	void	*W_img;
-	void	*P_img;
-	void	*C_img;
-	void	*E_img;
+	void	*g_img;
+	void	*w_img;
+	void	*p_img;
+	void	*c_img;
+	void	*e_img;
 }			t_mlx;
+
+typedef struct s_compose {
+	int	i;
+	int	y;
+	int	p;
+	int	c;
+	int	e;
+}		t_compose;
 
 int		handle_no_event(t_mlx *mlx);
 int		handle_destroy(t_mlx *mlx);
 int		handle_keypress(int keycode, t_mlx *mlx);
 void	mlx_hook_init(t_mlx mlx);
 void	get_map_info(char *filename, t_mlx *mlx);
+int		check_compose(t_mlx *mlx);
+int		check_map(t_mlx *mlx);
 void	stock_map(char *filename, t_mlx *mlx);
 void	init_map(char *filename, t_mlx *mlx);
-int		check_map(t_mlx *mlx);
+void	free_map(t_mlx *mlx);
+void	create_image(t_mlx *mlx);
+void	*c_to_img(char c, t_mlx *mlx);
+void	map_to_image(t_mlx *mlx);
+void	mlx_win_init(t_mlx *mlx);
+void	get_position(t_mlx *mlx);
+void	moove_player(int keycode, t_mlx *mlx);
+void	game_events(int keycode, t_mlx *mlx);
 #endif

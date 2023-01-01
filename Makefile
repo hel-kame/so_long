@@ -6,15 +6,18 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2022/12/28 18:04:52 by hel-kame         ###   ########.fr        #
+#    Updated: 2023/01/01 19:40:45 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRC = src/main.c			\
-      src/hook_handlers.c	\
-      src/parsing.c			\
+SRC = src/main.c					\
+      src/hook_handlers.c			\
+      src/parsing.c					\
+      src/free_map.c				\
+      src/create_image.c			\
+      src/game_events.c				\
 
 OBJ = $(SRC:.c=.o)
 
@@ -36,7 +39,7 @@ CFLAGS = -Werror -Wextra -Wall -I$(INCLUDES) -I$(MLX_PATH) -g3
 
 all :	$(NAME)
 
-$(NAME) :	
+$(NAME) :
 			@ $(MAKE) -s $(OBJ)
 			@ $(MAKE) -s -C $(MLX_PATH)
 			@ $(MAKE) -s -C $(LIB_PATH)

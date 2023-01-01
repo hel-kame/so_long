@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:43:28 by hel-kame          #+#    #+#             */
-/*   Updated: 2022/12/29 00:56:42 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/01 17:20:56 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ void	get_map_info(char *filename, t_mlx *mlx)
 	char	*str;
 	int		i;
 
+	if (!filename)
+		exit(-1);
 	fd = open(filename, O_RDONLY);
 	str = get_next_line(fd);
-	if (!str || fd < 0)
+	if (fd < 0 || !str)
 		return ;
 	mlx->column = ft_strlen(str) - 1;
 	i = 0;
@@ -61,34 +63,30 @@ void	stock_map(char *filename, t_mlx *mlx)
 	close(fd);
 }
 
-int	check_compose(t_mlx *mlx)
+int	check_cmp(t_mlx *mlx)
 {
-	int		i;
-	int		y;
-	int		P;
-	int		C;
-	int		E;
+	t_compose	cmp;
 
-	i = 0;
-	P = 0;
-	C = 0;
-	E = 0;
-	while (mlx->map[i] != NULL)
+	cmp.i = 0;
+	cmp.p = 0;
+	cmp.c = 0;
+	cmp.e = 0;
+	while (mlx->map[cmp.i] != NULL)
 	{
-		y = 0;
-		while (mlx->map[i][y] != '\0')
+		cmp.y = 0;
+		while (mlx->map[cmp.i][cmp.y] != '\0')
 		{
-			if (mlx->map[i][y] == 'P')
-				P++;
-			if (mlx->map[i][y] == 'C')
-				C++;
-			if (mlx->map[i][y] == 'E')
-				E++;
-			y++;
+			if (mlx->map[cmp.i][cmp.y] == 'P')
+				cmp.p++;
+			if (mlx->map[cmp.i][cmp.y] == 'C')
+				cmp.c++;
+			if (mlx->map[cmp.i][cmp.y] == 'E')
+				cmp.e++;
+			cmp.y++;
 		}
-		i++;
+		cmp.i++;
 	}
-	if (P != 1 || E != 1 || C == 0)
+	if (cmp.p != 1 || cmp.e != 1 || cmp.c == 0)
 		return (-1);
 	return (0);
 }
@@ -120,25 +118,11 @@ int	check_map(t_mlx *mlx)
 	return (0);
 }
 
-void	free_map(t_mlx *mlx)
-{
-	int	i;
-
-	i = mlx->row;
-	while (i >= 0)
-	{
-		free(mlx->map[i]);
-		i--;
-	}
-	free(mlx->map);
-	exit(-1);
-}
-
 void	init_map(char *filename, t_mlx *mlx)
 {
 	get_map_info(filename, mlx);
 	stock_map(filename, mlx);
-	if (check_map(mlx) == -1 || check_compose(mlx) == -1)
+	if (check_map(mlx) == -1 || check_cmp(mlx) == -1)
 	{
 		ft_printf("Map Error\n");
 		free_map(mlx);
