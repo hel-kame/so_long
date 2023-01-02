@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 17:41:34 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/01 21:04:47 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/02 23:31:23 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	create_image(t_mlx *m)
 {
-	int	i;
+	static char	*path[5] = {"src/p.xpm", "src/e.xpm",
+		"src/1.xpm", "src/0.xpm", "src/c.xpm"};
 
 	m->win = mlx_new_window(m->mlx, (m->column * 32), (m->row * 32), "so_long");
 	if (!m->win)
@@ -22,11 +23,45 @@ void	create_image(t_mlx *m)
 		free(m->win);
 		exit(-1);
 	}
-	m->p_img = mlx_xpm_file_to_image(m->mlx, "./src/p.xpm", &i, &i);
-	m->e_img = mlx_xpm_file_to_image(m->mlx, "./src/e.xpm", &i, &i);
-	m->w_img = mlx_xpm_file_to_image(m->mlx, "./src/1.xpm", &i, &i);
-	m->g_img = mlx_xpm_file_to_image(m->mlx, "./src/0.xpm", &i, &i);
-	m->c_img = mlx_xpm_file_to_image(m->mlx, "./src/c.xpm", &i, &i);
+	init_image(m, path);
+}
+
+void	init_image(t_mlx *m, char **path)
+{
+	int	i;
+	int	y;
+
+	y = 0;
+	while (y <= 4)
+	{
+		m->img[y] = mlx_xpm_file_to_image(m->mlx, path[y], &i, &i);
+		if (y == 0 && !m->img[y])
+		{
+			mlx_destroy_window(m->mlx, m->win);
+			mlx_destroy_display(m->mlx);
+			free(m->mlx);
+			free_map(m);
+			exit(0);
+		}
+		else if (!m->img[y])
+			free_mlx(m, y - 1);
+		y++;
+	}
+}
+
+void	*c_to_img(char c, t_mlx *m)
+{
+	if (c == 'P')
+		return (m->img[0]);
+	if (c == 'E')
+		return (m->img[1]);
+	if (c == '1')
+		return (m->img[2]);
+	if (c == '0')
+		return (m->img[3]);
+	if (c == 'C')
+		return (m->img[4]);
+	return (0);
 }
 
 void	map_to_image(t_mlx *m)
@@ -40,16 +75,8 @@ void	map_to_image(t_mlx *m)
 		y = 0;
 		while (m->map[i][y] != '\0')
 		{
-			if (m->map[i][y] == 'P')
-				mlx_put_image_to_window(m->mlx, m->win, m->p_img, (y * 32), (i * 32));
-			if (m->map[i][y] == 'E')
-				mlx_put_image_to_window(m->mlx, m->win, m->e_img, (y * 32), (i * 32));
-			if (m->map[i][y] == '1')
-				mlx_put_image_to_window(m->mlx, m->win, m->w_img, (y * 32), (i * 32));
-			if (m->map[i][y] == '0')
-				mlx_put_image_to_window(m->mlx, m->win, m->g_img, (y * 32), (i * 32));
-			if (m->map[i][y] == 'C')
-				mlx_put_image_to_window(m->mlx, m->win, m->c_img, (y * 32), (i * 32));
+			mlx_put_image_to_window(m->mlx, m->win,
+				c_to_img(m->map[i][y], m), (y * 32), (i * 32));
 			y++;
 		}
 		i++;

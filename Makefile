@@ -6,18 +6,19 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2023/01/02 15:18:03 by hel-kame         ###   ########.fr        #
+#    Updated: 2023/01/02 18:45:21 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = so_long
 
-SRC = src/hook_handlers.c			\
-      src/parsing.c					\
-      src/free.c					\
-      src/create_image.c			\
-      src/main.c					\
-      src/game_events.c				\
+SRC = src/hook_handlers.c				\
+      src/parsing.c						\
+      src/free.c						\
+      src/create_image.c				\
+      src/main.c						\
+      src/game_events.c					\
+      src/get_positions.c				\
 
 OBJ = $(SRC:.c=.o)
 

@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/22 16:01:37 by hel-kame          #+#    #+#             */
-/*   Updated: 2022/12/28 21:59:42 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/02 23:33:12 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ char	*read_file(char *buffer, int fd)
 	}
 	return (str);
 }
+
 char	*get_line(char *buffer, char *line)
 {
 	int		i;
@@ -78,4 +79,3 @@ char	*get_next_line(int fd)
 	s = get_line(buffer, s);
 	return (s);
 }
-

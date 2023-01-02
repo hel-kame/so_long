@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_map.c                                         :+:      :+:    :+:   */
+/*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 16:59:43 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/01 17:21:07 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:52:45 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,33 @@ void	free_map(t_mlx *mlx)
 	}
 	free(mlx->map);
 	exit(-1);
+}
+
+void	destroy_all_images(t_mlx *mlx, int i)
+{
+	while (i >= 0)
+	{
+		mlx_destroy_image(mlx->mlx, mlx->img[i]);
+		i--;
+	}
+}
+
+void	free_mlx(t_mlx *mlx, int i)
+{
+	destroy_all_images(mlx, i);
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	mlx_destroy_display(mlx->mlx);
+	free(mlx->mlx);
+	free_map(mlx);
+	exit(0);
+}
+
+int	handle_destroy(t_mlx *mlx)
+{
+	destroy_all_images(mlx, 4);
+	mlx_destroy_window(mlx->mlx, mlx->win);
+	mlx_destroy_display(mlx->mlx);
+	free(mlx->mlx);
+	free_map(mlx);
+	exit(0);
 }

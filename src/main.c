@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:16:10 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/01 18:44:46 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/02 21:50:54 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(int argc, char **argv)
 	mlx_win_init(&mlx);
 	mlx_hook_init(mlx);
 	mlx_loop(mlx.mlx);
-	mlx_destroy_image(mlx.mlx, mlx.p_img);
+	destroy_all_images(&mlx, 4);
 	mlx_destroy_display(mlx.mlx);
 	free(mlx.mlx);
+	free_map(&mlx);
 }

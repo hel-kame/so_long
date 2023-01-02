@@ -6,24 +6,24 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:43:28 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/01 17:20:56 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:09:07 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	get_map_info(char *filename, t_mlx *mlx)
+int	get_map_info(char *filename, t_mlx *mlx)
 {
 	int		fd;
 	char	*str;
 	int		i;
 
 	if (!filename)
-		exit(-1);
+		return (-1);
 	fd = open(filename, O_RDONLY);
 	str = get_next_line(fd);
 	if (fd < 0 || !str)
-		return ;
+		return (-1);
 	mlx->column = ft_strlen(str) - 1;
 	i = 0;
 	while (str)
@@ -34,6 +34,7 @@ void	get_map_info(char *filename, t_mlx *mlx)
 	}
 	close(fd);
 	mlx->row = i;
+	return (0);
 }
 
 void	stock_map(char *filename, t_mlx *mlx)
@@ -86,6 +87,7 @@ int	check_cmp(t_mlx *mlx)
 		}
 		cmp.i++;
 	}
+	mlx->nb_c = cmp.c;
 	if (cmp.p != 1 || cmp.e != 1 || cmp.c == 0)
 		return (-1);
 	return (0);
@@ -120,11 +122,15 @@ int	check_map(t_mlx *mlx)
 
 void	init_map(char *filename, t_mlx *mlx)
 {
-	get_map_info(filename, mlx);
+	mlx->current_c = 0;
+	if (get_map_info(filename, mlx) == -1)
+		exit (-1);
 	stock_map(filename, mlx);
 	if (check_map(mlx) == -1 || check_cmp(mlx) == -1)
 	{
 		ft_printf("Map Error\n");
 		free_map(mlx);
 	}
+	get_exit_position(mlx);
+	mlx->map[mlx->ex_row][mlx->ex_column] = '0';
 }
