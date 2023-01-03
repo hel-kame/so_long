@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:46:25 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/02 22:37:36 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/03 16:59:38 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int		handle_destroy(t_mlx *mlx);
 int		handle_keypress(int keycode, t_mlx *mlx);
 void	mlx_hook_init(t_mlx mlx);
 int		get_map_info(char *filename, t_mlx *mlx);
+int		get_extension(char *filename);
 int		check_compose(t_mlx *mlx);
 int		check_map(t_mlx *mlx);
 void	stock_map(char *filename, t_mlx *mlx);

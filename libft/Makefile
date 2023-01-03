@@ -6,7 +6,7 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2022/12/28 21:19:41 by hel-kame         ###   ########.fr        #
+#    Updated: 2023/01/03 16:57:18 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ SRC =	ft_atoi.c				\
 		ft_strnstr.c			\
 		ft_strrchr.c			\
 		ft_strncmp.c			\
+		ft_strcmp.c				\
 		ft_tolower.c			\
 		ft_toupper.c			\
 		ft_strjoin.c			\

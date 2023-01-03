@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:43:28 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/02 19:09:07 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/03 16:59:11 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	get_map_info(char *filename, t_mlx *mlx)
 	char	*str;
 	int		i;
 
-	if (!filename)
+	if (get_extension(filename))
 		return (-1);
 	fd = open(filename, O_RDONLY);
 	str = get_next_line(fd);

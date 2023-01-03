@@ -1,34 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 19:16:10 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/03 12:10:54 by hel-kame         ###   ########.fr       */
+/*   Created: 2022/11/07 14:48:42 by hel-kame          #+#    #+#             */
+/*   Updated: 2023/01/03 16:59:55 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "libft.h"
 
-int	main(int argc, char **argv)
+int	ft_strcmp(char *s1, char *s2)
 {
-	t_mlx	mlx;
+	size_t	i;
 
-	(void)argc;
-	init_map(argv[1], &mlx);
-	mlx.mlx = mlx_init();
-	if (!mlx.mlx)
-	{
-		free(mlx.mlx);
-		exit(-1);
-	}
-	mlx_win_init(&mlx);
-	mlx_hook_init(mlx);
-	mlx_loop(mlx.mlx);
-	destroy_all_images(&mlx, 4);
-	mlx_destroy_display(mlx.mlx);
-	free(mlx.mlx);
-	free_map(&mlx);
+	i = 0;
+	while ((s1[i] == s2[i]) && (s1[i] != '\0') && (s2[i] != '\0'))
+		i++;
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }

@@ -6,11 +6,25 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 17:38:26 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/02 17:38:35 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/03 17:04:23 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+int	get_extension(char *filename)
+{
+	int len;
+
+	len = ft_strlen(filename);
+	if (!filename)
+		return (-1);
+	if (len <= 4)
+		return (-1);
+	if (ft_strcmp(".ber", filename + (len - 4)) != 0)
+		return (-1);
+	return (0);
+}
 
 void	get_player_position(t_mlx *m)
 {
