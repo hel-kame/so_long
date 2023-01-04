@@ -1,10 +1,12 @@
+/* ************************************************************************** */
+/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   hook_handlers.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/27 21:06:28 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/03 11:55:56 by hel-kame         ###   ########.fr       */
+/*   Created: 2023/01/04 13:31:16 by hel-kame          #+#    #+#             */
+/*   Updated: 2023/01/04 22:44:10 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,17 +31,22 @@ int	count_move(int keycode, t_mlx *m)
 int	handle_keypress(int keycode, t_mlx *mlx)
 {
 	static int	i;
+	static int	colors;
 
 	if (keycode == ESC)
+	{
 		mlx_destroy_window(mlx->mlx, mlx->win);
+		exit(0);
+	}
 	if (keycode == W || keycode == S || keycode == A || keycode == D)
 	{
 		game_events(keycode, mlx);
 		if (count_move(keycode, mlx))
 		{
 			i++;
+			colors++;
 			mlx->move = i;
-			ft_printf("%d\n", mlx->move);
+			ft_printf("\t\e[1m\x1B[38;5;%dm%d\033[0m\n", colors, i);
 		}
 	}
 	return (0);

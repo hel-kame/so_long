@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:43:28 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/03 16:59:11 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:43:00 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int	get_map_info(char *filename, t_mlx *mlx)
 	char	*str;
 	int		i;
 
-	if (get_extension(filename))
-		return (-1);
 	fd = open(filename, O_RDONLY);
 	str = get_next_line(fd);
 	if (fd < 0 || !str)
@@ -29,6 +27,8 @@ int	get_map_info(char *filename, t_mlx *mlx)
 	while (str)
 	{
 		i++;
+		if (i == 1 && get_first_line(str) == -1)
+			return (-1);
 		free(str);
 		str = get_next_line(fd);
 	}
@@ -113,7 +113,7 @@ int	check_map(t_mlx *mlx)
 				return (-1);
 			y++;
 		}
-		if (mlx->map[i][y - 1] != '1' || y != mlx->column)
+		if (y != mlx->column || mlx->map[i][y - 1] != '1')
 			return (-1);
 		i++;
 	}
@@ -122,15 +122,19 @@ int	check_map(t_mlx *mlx)
 
 void	init_map(char *filename, t_mlx *mlx)
 {
-	mlx->current_c = 0;
+	if (get_extension(filename))
+		exit(ft_printf("\n\t\e[1m\x1B[38;5;196mBad extension ! \n\n"));
 	if (get_map_info(filename, mlx) == -1)
-		exit (-1);
+		exit(ft_printf("\n\t\e[1m\x1B[38;5;196mMap Error ! \n\n"));
 	stock_map(filename, mlx);
 	if (check_map(mlx) == -1 || check_cmp(mlx) == -1)
 	{
-		ft_printf("Map Error\n");
 		free_map(mlx);
+		exit(ft_printf("\n\t\e[1m\x1B[38;5;196mMap Error !\n\n"));
 	}
+	pathfinding(filename, mlx);
 	get_exit_position(mlx);
+	mlx->current_c = 0;
+	mlx->move = 0;
 	mlx->map[mlx->ex_row][mlx->ex_column] = '0';
 }

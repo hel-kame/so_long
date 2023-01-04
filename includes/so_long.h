@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:46:25 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/03 16:59:38 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:23:49 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_mlx {
 	void	*mlx;
 	void	*win;
 	char	**map;
-	void	*img[5];
+	void	*img[8];
 }			t_mlx;
 
 typedef struct s_compose {
@@ -55,6 +55,7 @@ int		handle_keypress(int keycode, t_mlx *mlx);
 void	mlx_hook_init(t_mlx mlx);
 int		get_map_info(char *filename, t_mlx *mlx);
 int		get_extension(char *filename);
+int		get_first_line(char *str);
 int		check_compose(t_mlx *mlx);
 int		check_map(t_mlx *mlx);
 void	stock_map(char *filename, t_mlx *mlx);
@@ -62,14 +63,17 @@ void	init_map(char *filename, t_mlx *mlx);
 void	init_image(t_mlx *mlx, char **path);
 void	free_mlx(t_mlx *mlx, int i);
 void	free_map(t_mlx *mlx);
+void	reload_map(t_mlx *mlx);
 void	destroy_all_images(t_mlx *mlx, int i);
 void	create_image(t_mlx *mlx);
 void	check_image(t_mlx *mlx);
-void	*c_to_img(char c, t_mlx *mlx);
-void	map_to_image(t_mlx *mlx);
+void	*c_to_img(char c, t_mlx *mlx, int keycode);
+void	map_to_image(t_mlx *mlx, int keycode);
 void	mlx_win_init(t_mlx *mlx);
 void	get_player_position(t_mlx *mlx);
 void	get_exit_position(t_mlx *mlx);
 void	moove_player(int keycode, t_mlx *mlx);
 void	game_events(int keycode, t_mlx *mlx);
+void	init_cross(t_mlx *mlx, int x, int y);
+void	pathfinding(char *filename, t_mlx *mlx);
 #endif

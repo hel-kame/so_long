@@ -6,11 +6,24 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 16:59:43 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/02 21:52:45 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:44:39 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	reload_map(t_mlx *mlx)
+{
+	int	i;
+
+	i = mlx->row;
+	while (i >= 0)
+	{
+		free(mlx->map[i]);
+		i--;
+	}
+	free(mlx->map);
+}
 
 void	free_map(t_mlx *mlx)
 {
@@ -23,7 +36,6 @@ void	free_map(t_mlx *mlx)
 		i--;
 	}
 	free(mlx->map);
-	exit(-1);
 }
 
 void	destroy_all_images(t_mlx *mlx, int i)
@@ -47,7 +59,7 @@ void	free_mlx(t_mlx *mlx, int i)
 
 int	handle_destroy(t_mlx *mlx)
 {
-	destroy_all_images(mlx, 4);
+	destroy_all_images(mlx, 7);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx_destroy_display(mlx->mlx);
 	free(mlx->mlx);

@@ -6,7 +6,7 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2023/01/02 18:45:21 by hel-kame         ###   ########.fr        #
+#    Updated: 2023/01/04 18:06:35 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,8 @@ SRC = src/hook_handlers.c				\
       src/main.c						\
       src/game_events.c					\
       src/get_positions.c				\
+      src/init_cross.c				\
+      src/pathfinding.c					\
 
 OBJ = $(SRC:.c=.o)
 

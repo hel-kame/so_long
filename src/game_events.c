@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 19:22:53 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/03 14:50:01 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/04 22:27:39 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,13 @@ void	exit_game(int keycode, t_mlx *m)
 	if (m->current_c == m->nb_c)
 		m->map[m->ex_row][m->ex_column] = 'E';
 	if (keycode == A && m->map[m->pos_row][m->pos_column - 1] == 'E')
-		free_mlx(m, 4);
+		free_mlx(m, 7);
 	if (keycode == D && m->map[m->pos_row][m->pos_column + 1] == 'E')
-		free_mlx(m, 4);
+		free_mlx(m, 7);
 	if (keycode == S && m->map[m->pos_row + 1][m->pos_column] == 'E')
-		free_mlx(m, 4);
+		free_mlx(m, 7);
 	if (keycode == W && m->map[m->pos_row - 1][m->pos_column] == 'E')
-		free_mlx(m, 4);
+		free_mlx(m, 7);
 }
 
 void	game_events(int keycode, t_mlx *mlx)
@@ -77,5 +77,5 @@ void	game_events(int keycode, t_mlx *mlx)
 	recolt_collectible(keycode, mlx);
 	exit_game(keycode, mlx);
 	moove_player(keycode, mlx);
-	map_to_image(mlx);
+	map_to_image(mlx, keycode);
 }
