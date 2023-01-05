@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   main_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 19:16:10 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 16:13:15 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:29:26 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	main(int argc, char **argv)
 {
@@ -27,7 +27,7 @@ int	main(int argc, char **argv)
 	mlx_win_init(&mlx);
 	mlx_hook_init(mlx);
 	mlx_loop(mlx.mlx);
-	destroy_all_images(&mlx, 4);
+	destroy_all_images(&mlx, 7);
 	mlx_destroy_display(mlx.mlx);
 	free(mlx.mlx);
 	free_map(&mlx);

@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook_handlers.c                                    :+:      :+:    :+:   */
+/*   hook_handlers_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:31:16 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 16:12:46 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:36:05 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int	handle_no_event(t_mlx *mlx)
 {
@@ -31,7 +31,11 @@ int	count_move(int keycode, t_mlx *m)
 int	handle_keypress(int keycode, t_mlx *mlx)
 {
 	static unsigned int	i;
+	char				*str;
+	int					*colors;
 
+	colors = colors_values();
+	str = ft_itoa(i);
 	if (keycode == ESC)
 		mlx_destroy_window(mlx->mlx, mlx->win);
 	if (keycode == W || keycode == S || keycode == A || keycode == D)
@@ -43,7 +47,9 @@ int	handle_keypress(int keycode, t_mlx *mlx)
 			mlx->move = i;
 			ft_printf("\t\e[1m\x1B[38;5;%dm%d\033[0m\n", i, i);
 		}
+		mlx_string_put(mlx->mlx, mlx->win, 48, 56, colors[i], str);
 	}
+	free(str);
 	return (0);
 }
 

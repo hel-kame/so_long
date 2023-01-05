@@ -1,34 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   colors_values_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 19:16:10 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 16:13:15 by hel-kame         ###   ########.fr       */
+/*   Created: 2023/01/05 16:33:05 by hel-kame          #+#    #+#             */
+/*   Updated: 2023/01/05 17:58:41 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
-int	main(int argc, char **argv)
+int	*colors_values(void)
 {
-	t_mlx	mlx;
+	static int	colors[256];
+	int			i;
 
-	(void)argc;
-	init_map(argv[1], &mlx);
-	mlx.mlx = mlx_init();
-	if (!mlx.mlx)
+	i = 0;
+	while (i < 256)
 	{
-		free(mlx.mlx);
-		exit(-1);
+		colors[i] = i | (i << 8) | (i << 16);
+		i++;
 	}
-	mlx_win_init(&mlx);
-	mlx_hook_init(mlx);
-	mlx_loop(mlx.mlx);
-	destroy_all_images(&mlx, 4);
-	mlx_destroy_display(mlx.mlx);
-	free(mlx.mlx);
-	free_map(&mlx);
+	return (colors);
 }

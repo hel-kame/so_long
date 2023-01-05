@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   so_long.h                                          :+:      :+:    :+:   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:46:25 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 16:18:02 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/05 17:13:44 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_mlx {
 	void	*mlx;
 	void	*win;
 	char	**map;
-	void	*img[5];
+	void	*img[8];
 }			t_mlx;
 
 typedef struct s_compose {
@@ -67,8 +67,8 @@ void	reload_map(t_mlx *mlx);
 void	destroy_all_images(t_mlx *mlx, int i);
 void	create_image(t_mlx *mlx);
 void	check_image(t_mlx *mlx);
-void	*c_to_img(char c, t_mlx *mlx);
-void	map_to_image(t_mlx *mlx);
+void	*c_to_img(char c, t_mlx *mlx, int keycode);
+void	map_to_image(t_mlx *mlx, int keycode);
 void	mlx_win_init(t_mlx *mlx);
 void	get_player_position(t_mlx *mlx);
 void	get_exit_position(t_mlx *mlx);
@@ -76,4 +76,5 @@ void	moove_player(int keycode, t_mlx *mlx);
 void	game_events(int keycode, t_mlx *mlx);
 void	init_cross(t_mlx *mlx, int x, int y);
 void	pathfinding(char *filename, t_mlx *mlx);
+int		*colors_values(void);
 #endif

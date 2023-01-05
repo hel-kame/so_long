@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free.c                                             :+:      :+:    :+:   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 16:59:43 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 16:12:19 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/05 16:29:08 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 void	reload_map(t_mlx *mlx)
 {
@@ -59,7 +59,7 @@ void	free_mlx(t_mlx *mlx, int i)
 
 int	handle_destroy(t_mlx *mlx)
 {
-	destroy_all_images(mlx, 4);
+	destroy_all_images(mlx, 7);
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx_destroy_display(mlx->mlx);
 	free(mlx->mlx);
