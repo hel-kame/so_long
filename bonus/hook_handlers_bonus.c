@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:31:16 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 17:36:05 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/05 23:42:27 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,12 @@
 
 int	handle_no_event(t_mlx *mlx)
 {
-	(void)mlx;
+	static int	i;
+
+	i++;
+	mlx->ennemi = i;
+	if (i == 10000)
+		i = 0;
 	return (0);
 }
 
@@ -31,11 +36,10 @@ int	count_move(int keycode, t_mlx *m)
 int	handle_keypress(int keycode, t_mlx *mlx)
 {
 	static unsigned int	i;
-	char				*str;
 	int					*colors;
 
 	colors = colors_values();
-	str = ft_itoa(i);
+	mlx->display = ft_itoa(i);
 	if (keycode == ESC)
 		mlx_destroy_window(mlx->mlx, mlx->win);
 	if (keycode == W || keycode == S || keycode == A || keycode == D)
@@ -45,11 +49,11 @@ int	handle_keypress(int keycode, t_mlx *mlx)
 		{
 			i++;
 			mlx->move = i;
-			ft_printf("\t\e[1m\x1B[38;5;%dm%d\033[0m\n", i, i);
+			ft_printf("\t\t\t\e[1m\x1B[38;5;%dm%d\033[0m\n", i, i);
 		}
-		mlx_string_put(mlx->mlx, mlx->win, 48, 56, colors[i], str);
+		mlx_string_put(mlx->mlx, mlx->win, 48, 56, colors[i], mlx->display);
 	}
-	free(str);
+	free(mlx->display);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2023/01/05 17:03:45 by hel-kame         ###   ########.fr        #
+#    Updated: 2023/01/05 22:57:57 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,8 @@ SRC_BONUS = bonus/hook_handlers_bonus.c				\
             bonus/init_cross_bonus.c				\
             bonus/pathfinding_bonus.c				\
             bonus/colors_values_bonus.c				\
+            bonus/ennemies.c						\
+            bonus/end_message.c						\
 
 OBJ = $(SRC:.c=.o)
 

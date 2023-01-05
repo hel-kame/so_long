@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 17:41:34 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 16:29:05 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/05 23:39:47 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	create_image(t_mlx *m)
 {
-	static char	*path[8] = {"bonus/p_r.xpm", "bonus/p_r2.xpm",
+	static char	*path[10] = {"bonus/p_r.xpm", "bonus/p_r2.xpm",
 		"bonus/p_l.xpm", "bonus/p_l2.xpm", "bonus/e.xpm", "bonus/1.xpm",
-		"bonus/0.xpm", "bonus/c.xpm"};
+		"bonus/0.xpm", "bonus/c.xpm", "bonus/x.xpm", "bonus/x2.xpm"};
 
 	m->win = mlx_new_window(m->mlx, (m->column * 50), (m->row * 50), "so_long");
 	if (!m->win)
@@ -33,7 +33,7 @@ void	init_image(t_mlx *m, char **path)
 	int	y;
 
 	y = 0;
-	while (y <= 7)
+	while (y <= 9)
 	{
 		m->img[y] = mlx_xpm_file_to_image(m->mlx, path[y], &i, &i);
 		if (y == 0 && !m->img[y])
@@ -74,6 +74,10 @@ void	*c_to_img(char c, t_mlx *m, int keycode)
 		return (m->img[6]);
 	if (c == 'C')
 		return (m->img[7]);
+	if (m->ennemi < 5000 && c == 'X')
+		return (m->img[8]);
+	if (m->ennemi > 5000 && c == 'X')
+		return (m->img[9]);
 	return (0);
 }
 

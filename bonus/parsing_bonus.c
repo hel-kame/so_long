@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:43:28 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 17:34:15 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/05 23:37:16 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ int	check_map(t_mlx *mlx)
 		{
 			if ((mlx->map[i][y] != '1') && (mlx->map[i][y] != '0') &&
 					(mlx->map[i][y] != 'C') && (mlx->map[i][y] != 'E') &&
-					(mlx->map[i][y] != 'P'))
+					(mlx->map[i][y] != 'P') && (mlx->map[i][y] != 'X'))
 				return (-1);
 			if (((i == 0 || i == mlx->row - 1) && (mlx->map[i][y] != '1')) ||
 					(mlx->map[i][0] != '1'))
@@ -136,5 +136,6 @@ void	init_map(char *filename, t_mlx *mlx)
 	get_exit_position(mlx);
 	mlx->current_c = 0;
 	mlx->move = 0;
+	mlx->ennemi = 0;
 	mlx->map[mlx->ex_row][mlx->ex_column] = '0';
 }

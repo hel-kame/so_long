@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main_bonus.c                                       :+:      :+:    :+:   */
+/*   end_message.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/26 19:16:10 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 23:32:33 by hel-kame         ###   ########.fr       */
+/*   Created: 2023/01/05 22:46:52 by hel-kame          #+#    #+#             */
+/*   Updated: 2023/01/05 23:24:55 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long_bonus.h"
 
-int	main(int argc, char **argv)
+int	success_message(void)
 {
-	t_mlx	mlx;
+	int		fd;
+	char	*str;
+	int		i;
 
-	(void)argc;
-	init_map(argv[1], &mlx);
-	mlx.mlx = mlx_init();
-	if (!mlx.mlx)
+	fd = open("bonus/mario", O_RDONLY);
+	str = get_next_line(fd);
+	if (fd < 0 || !str)
+		return (-1);
+	ft_printf("\n");
+	i = 0;
+	while (str)
 	{
-		free(mlx.mlx);
-		exit(-1);
+		i++;
+		ft_printf("\e[1m\x1B[38;5;%dm%s\033[0m", i, str);
+		free(str);
+		str = get_next_line(fd);
 	}
-	mlx_win_init(&mlx);
-	mlx_hook_init(mlx);
-	mlx_loop(mlx.mlx);
-	destroy_all_images(&mlx, 9);
-	mlx_destroy_display(mlx.mlx);
-	free(mlx.mlx);
-	free_map(&mlx);
+	free(str);
+	close(fd);
+	return (0);
 }
