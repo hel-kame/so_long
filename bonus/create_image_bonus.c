@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 17:41:34 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/06 10:12:10 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 14:58:22 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	create_image(t_mlx *m)
 {
-	static char	*path[10] = {"bonus/p_r.xpm", "bonus/p_r2.xpm",
-		"bonus/p_l.xpm", "bonus/p_l2.xpm", "bonus/e.xpm", "bonus/1.xpm",
-		"bonus/0.xpm", "bonus/c.xpm", "bonus/x.xpm", "bonus/x2.xpm"};
+	static char	*path[10] = {"img/p_r.xpm", "img/p_r2.xpm",
+		"img/p_l.xpm", "img/p_l2.xpm", "img/e.xpm", "img/1.xpm",
+		"img/0.xpm", "img/c.xpm", "img/x.xpm", "img/x2.xpm"};
 
 	m->win = mlx_new_window(m->mlx, (m->column * 50), (m->row * 50), "so_long");
 	if (!m->win)

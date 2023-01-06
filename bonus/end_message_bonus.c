@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   end_message.c                                      :+:      :+:    :+:   */
+/*   end_message_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 22:46:52 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/06 09:06:26 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 15:07:05 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	success_message(void)
 	char	*str;
 	int		i;
 
-	fd = open("bonus/success_message", O_RDONLY);
+	fd = open("bonus/success_message_bonus.txt", O_RDONLY);
 	str = get_next_line(fd);
 	if (fd < 0 || !str)
 		return (-1);
@@ -42,7 +42,7 @@ int	fail_message(void)
 	char	*str;
 	int		i;
 
-	fd = open("bonus/fail_message", O_RDONLY);
+	fd = open("bonus/fail_message_bonux.txt", O_RDONLY);
 	str = get_next_line(fd);
 	if (fd < 0 || !str)
 		return (-1);

@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 17:41:34 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 16:27:35 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 14:57:48 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	create_image(t_mlx *m)
 {
-	static char	*path[5] = {"src/p.xpm", "src/e.xpm", "src/1.xpm",
-		"src/0.xpm", "src/c.xpm"};
+	static char	*path[5] = {"img/p.xpm", "img/e.xpm", "img/1.xpm",
+		"img/0.xpm", "img/c.xpm"};
 
 	m->win = mlx_new_window(m->mlx, (m->column * 50), (m->row * 50), "so_long");
 	if (!m->win)
