@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 17:41:34 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 23:39:47 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:12:10 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,33 +52,16 @@ void	init_image(t_mlx *m, char **path)
 
 void	*c_to_img(char c, t_mlx *m, int keycode)
 {
-	if (keycode == 0 || keycode == S || keycode == W || keycode == D)
-	{
-		if (m->move % 2 == 0 && c == 'P')
-			return (m->img[0]);
-		else if (m->move % 2 != 0 && c == 'P')
-			return (m->img[1]);
-	}
-	if (keycode == S || keycode == W || keycode == A)
-	{
-		if (m->move % 2 != 0 && c == 'P')
-			return (m->img[2]);
-		else if (m->move % 2 == 0 && c == 'P')
-			return (m->img[3]);
-	}
-	if (c == 'E')
-		return (m->img[4]);
-	if (c == '1')
-		return (m->img[5]);
-	if (c == '0')
-		return (m->img[6]);
-	if (c == 'C')
-		return (m->img[7]);
-	if (m->ennemi < 5000 && c == 'X')
-		return (m->img[8]);
-	if (m->ennemi > 5000 && c == 'X')
-		return (m->img[9]);
-	return (0);
+	void	*tmp;
+
+	tmp = player_to_img(c, m, keycode);
+	if (tmp)
+		return (tmp);
+	tmp = elem_to_img(c, m);
+	if (tmp)
+		return (tmp);
+	tmp = ennemy_to_img(c, m);
+	return (tmp);
 }
 
 void	map_to_image(t_mlx *m, int keycode)

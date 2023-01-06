@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 16:59:43 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 23:34:52 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 10:10:44 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	free_mlx(t_mlx *mlx, int i)
 	mlx_destroy_window(mlx->mlx, mlx->win);
 	mlx_destroy_display(mlx->mlx);
 	free(mlx->mlx);
-	free(mlx->display);
+	if (i == 9)
+		free(mlx->display);
 	free_map(mlx);
 	exit(0);
 }

@@ -6,7 +6,7 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2023/01/05 22:57:57 by hel-kame         ###   ########.fr        #
+#    Updated: 2023/01/06 09:42:22 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,18 +24,19 @@ SRC = src/hook_handlers.c				\
       src/init_cross.c					\
       src/pathfinding.c					\
 
-SRC_BONUS = bonus/hook_handlers_bonus.c				\
-            bonus/parsing_bonus.c					\
-            bonus/free_bonus.c						\
-            bonus/create_image_bonus.c				\
-            bonus/main_bonus.c						\
-            bonus/game_events_bonus.c				\
-            bonus/get_positions_bonus.c				\
-            bonus/init_cross_bonus.c				\
-            bonus/pathfinding_bonus.c				\
-            bonus/colors_values_bonus.c				\
-            bonus/ennemies.c						\
-            bonus/end_message.c						\
+SRC_BONUS = bonus/hook_handlers_bonus.c					\
+            bonus/parsing_bonus.c						\
+            bonus/free_bonus.c							\
+            bonus/create_image_bonus.c					\
+            bonus/char_to_img_bonus.c					\
+            bonus/main_bonus.c							\
+            bonus/game_events_bonus.c					\
+            bonus/get_positions_bonus.c					\
+            bonus/init_cross_bonus.c					\
+            bonus/pathfinding_bonus.c					\
+            bonus/colors_values_bonus.c					\
+            bonus/ennemies_bonus.c						\
+            bonus/end_message.c							\
 
 OBJ = $(SRC:.c=.o)
 

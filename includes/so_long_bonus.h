@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 18:46:25 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 23:11:38 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 09:46:05 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@ void	reload_map(t_mlx *mlx);
 void	destroy_all_images(t_mlx *mlx, int i);
 void	create_image(t_mlx *mlx);
 void	check_image(t_mlx *mlx);
+void	*player_to_img(char c, t_mlx *mlx, int keycode);
+void	*elem_to_img(char c, t_mlx *mlx);
+void	*ennemy_to_img(char c, t_mlx *mlx);
 void	*c_to_img(char c, t_mlx *mlx, int keycode);
 void	map_to_image(t_mlx *mlx, int keycode);
 void	ennemy_in_map(t_mlx *mlx, int i);
@@ -82,4 +85,5 @@ void	init_cross(t_mlx *mlx, int x, int y);
 void	pathfinding(char *filename, t_mlx *mlx);
 int		*colors_values(void);
 int		success_message(void);
+int		fail_message(void);
 #endif
