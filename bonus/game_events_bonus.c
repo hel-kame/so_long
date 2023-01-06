@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/01 19:22:53 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 23:01:48 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 16:54:05 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ void	moove_player(int keycode, t_mlx *m)
 		swap_elements(m, m->pos_row, m->pos_column + 1);
 	if (keycode == A && m->map[m->pos_row][m->pos_column - 1] != '1')
 		swap_elements(m, m->pos_row, m->pos_column - 1);
+	if (m->current_c == m->nb_c)
+		m->map[m->ex_row][m->ex_column] = 'E';
 }
 
 void	recolt_collectible(int keycode, t_mlx *m)
@@ -59,8 +61,6 @@ void	recolt_collectible(int keycode, t_mlx *m)
 
 void	exit_game(int keycode, t_mlx *m)
 {
-	if (m->current_c == m->nb_c)
-		m->map[m->ex_row][m->ex_column] = 'E';
 	if (keycode == A && m->map[m->pos_row][m->pos_column - 1] == 'E')
 	{
 		success_message();

@@ -6,7 +6,7 @@
 #    By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/07 14:49:59 by hel-kame          #+#    #+#              #
-#    Updated: 2023/01/06 15:07:35 by hel-kame         ###   ########.fr        #
+#    Updated: 2023/01/06 16:42:36 by hel-kame         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,33 +14,39 @@ NAME = so_long
 
 NAME_BONUS = better_so_long
 
-SRC = src/hook_handlers.c				\
-      src/parsing.c						\
-      src/free.c						\
-      src/create_image.c				\
-      src/main.c						\
-      src/game_events.c					\
-      src/get_positions.c				\
-      src/init_cross.c					\
-      src/pathfinding.c					\
+SRC_DIR = src
 
-SRC_BONUS = bonus/hook_handlers_bonus.c						\
-            bonus/parsing_bonus.c							\
-            bonus/free_bonus.c								\
-            bonus/create_image_bonus.c						\
-            bonus/char_to_img_bonus.c						\
-            bonus/main_bonus.c								\
-            bonus/game_events_bonus.c						\
-            bonus/get_positions_bonus.c						\
-            bonus/init_cross_bonus.c						\
-            bonus/pathfinding_bonus.c						\
-            bonus/colors_values_bonus.c						\
-            bonus/ennemies_bonus.c							\
-            bonus/end_message_bonus.c							\
+SRC_BONUS_DIR = bonus
 
-OBJ = $(SRC:.c=.o)
+BIN_DIR = bin
 
-OBJ_BONUS = $(SRC_BONUS:.c=.o)
+SRC = $(SRC_DIR)/hook_handlers.c				\
+      $(SRC_DIR)/parsing.c						\
+      $(SRC_DIR)/free.c						\
+      $(SRC_DIR)/create_image.c				\
+      $(SRC_DIR)/main.c						\
+      $(SRC_DIR)/game_events.c					\
+      $(SRC_DIR)/get_positions.c				\
+      $(SRC_DIR)/init_cross.c					\
+      $(SRC_DIR)/pathfinding.c					\
+
+SRC_BONUS = $(SRC_BONUS_DIR)/hook_handlers_bonus.c						\
+            $(SRC_BONUS_DIR)/parsing_bonus.c							\
+            $(SRC_BONUS_DIR)/free_bonus.c								\
+            $(SRC_BONUS_DIR)/create_image_bonus.c						\
+            $(SRC_BONUS_DIR)/char_to_img_bonus.c						\
+            $(SRC_BONUS_DIR)/main_bonus.c								\
+            $(SRC_BONUS_DIR)/game_events_bonus.c						\
+            $(SRC_BONUS_DIR)/get_positions_bonus.c						\
+            $(SRC_BONUS_DIR)/init_cross_bonus.c							\
+            $(SRC_BONUS_DIR)/pathfinding_bonus.c						\
+            $(SRC_BONUS_DIR)/colors_values_bonus.c						\
+            $(SRC_BONUS_DIR)/ennemies_bonus.c							\
+            $(SRC_BONUS_DIR)/end_message_bonus.c						\
+
+OBJ = $(SRC:$(SRC_DIR)/%.c=$(BIN_DIR)/%.o)
+
+OBJ_BONUS = $(SRC_BONUS:$(SRC_BONUS_DIR)/%.c=$(BIN_DIR)/%.o)
 
 LIB_PATH = ./libft
 
@@ -60,12 +66,15 @@ CFLAGS = -Werror -Wextra -Wall -I$(INCLUDES) -I$(MLX_PATH) -g3
 
 all :	$(NAME)
 
-bonus :	$(NAME_BONUS)
+bonus:	$(NAME_BONUS)
 
-$(OBJ) :		%.o: %.c
+$(BIN_DIR):
+		@ mkdir -p $(BIN_DIR)
+
+$(OBJ) :		$(BIN_DIR)/%.o: $(SRC_DIR)/%.c $(BIN_DIR)
 		@ $(CC) $(CFLAGS) -c $< -o $@
 
-$(OBJ_BONUS) :		%.o: %.c
+$(OBJ_BONUS) :		$(BIN_DIR)/%.o: $(SRC_BONUS_DIR)/%.c $(BIN_DIR)
 		@ $(CC) $(CFLAGS) -c $< -o $@
 
 $(NAME) :	$(OBJ)
@@ -82,8 +91,9 @@ $(NAME_BONUS) :	$(OBJ_BONUS)
 
 clean :
 		@ $(MAKE) -s clean -C $(LIB_PATH)
-		@ rm -f $(OBJ) @
+		@ rm -f $(OBJ)
 		@ rm -f $(OBJ_BONUS)
+		@ rm -rf $(BIN_DIR)
 		@echo "\e[33m\e[1m\tMake\e[0m [🗿] : \e[1mRemove binary files .. 🧹"
 
 fclean : clean
@@ -96,4 +106,4 @@ re :
 	@echo "\e[33m\e[1m\tMake\e[0m [🗿] : \e[1mRecompile .. 🔄"
 	@ $(MAKE) -s fclean $(NAME)
 
-.PHONY: all bonus clean fclean re
+.PHONY: all $(SRC_BONUS_DIR) clean fclean re

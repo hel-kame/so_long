@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pathfinding.c                                      :+:      :+:    :+:   */
+/*   pathfinding_bonus.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 15:29:18 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/06 14:40:43 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:39:10 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 static void	explore_player_line(t_mlx *m)
 {
@@ -27,43 +27,28 @@ static void	explore_player_line(t_mlx *m)
 	}
 }
 
-void	count_cross(t_mlx *m)
-{
-	int	x;
-	int	y;
-
-	x = m->pos_row;
-	y = m->pos_column;
-	while (m->map[x] != NULL)
-	{
-		y = 0;
-		while (m->map[x][y] != '\0')
-		{
-			if (m->map[x][y] == '*')
-				init_cross(m, x, y);
-			y++;
-		}
-		x++;
-	}
-}
-
 static void	explore_map(t_mlx *m)
 {
 	int	x;
 	int	y;
+	int	c;
 
-	x = 0;
-	while (m->map[x] != NULL)
+	c = 0;
+	while (c <= m->row * m->column)
 	{
-		count_cross(m);
-		y = 0;
-		while (m->map[x][y] != '\0')
+		x = 0;
+		while (m->map[x] != NULL)
 		{
-			if (m->map[x][y] == '*')
-				init_cross(m, x, y);
-			y++;
+			y = 0;
+			while (m->map[x][y] != '\0')
+			{
+				if (m->map[x][y] == '*')
+					init_cross(m, x, y);
+				y++;
+			}
+			x++;
 		}
-		x++;
+		c++;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/04 13:31:16 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 16:12:46 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 15:25:12 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	handle_keypress(int keycode, t_mlx *mlx)
 		{
 			i++;
 			mlx->move = i;
-			ft_printf("\t\e[1m\x1B[38;5;%dm%d\033[0m\n", i, i);
+			ft_printf("\e[1m\x1B[38;5;%dm%d\033[0m\n", i, i);
 		}
 	}
 	return (0);

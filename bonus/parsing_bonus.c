@@ -6,7 +6,7 @@
 /*   By: hel-kame <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:43:28 by hel-kame          #+#    #+#             */
-/*   Updated: 2023/01/05 23:37:16 by hel-kame         ###   ########.fr       */
+/*   Updated: 2023/01/06 15:29:46 by hel-kame         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,4 +138,5 @@ void	init_map(char *filename, t_mlx *mlx)
 	mlx->move = 0;
 	mlx->ennemi = 0;
 	mlx->map[mlx->ex_row][mlx->ex_column] = '0';
+	ft_printf("\n");
 }
